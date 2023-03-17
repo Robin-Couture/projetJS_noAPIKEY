@@ -53,7 +53,7 @@ function getValue() {
         txtPrincipal.style = "";
         tableauMastery.style = "";
 
-        //Permet d'afficher la fiche d'un joueur qui contient des infos utiles à partir du summoner ID.
+        //Permet d'afficher la fiche d'un joueur qui contient des infos utiles à partir du summoner name.
         const summonerInfo = fetchSummonerID().then((httpResponseSummID) => {
             console.log('httpResponseSummID:', httpResponseSummID);
             return httpResponseSummID.json();
@@ -62,6 +62,7 @@ function getValue() {
             summonerEncryptedID = summonerID.id;
             txtPrincipal.textContent = `Invocateur encrypted ID : ${summonerEncryptedID}`;
 
+            //fonction qui permet de récupéré les infos concernant les mastery depuis l'encrypted summoner id
             function fetchSummonerMastery(EncryptedSummonerID) {
                 summonerEncryptedID = EncryptedSummonerID;
                 return fetch('/src/json/summonerMastery.json');
@@ -71,25 +72,27 @@ function getValue() {
                 console.log('httpResponseMastery', httpResponseMastery);
                 return httpResponseMastery.json();
             }).then((summonerMastery) => {
-                console.log('summoner mastery', summonerMastery);
 
                 let infoImg = [];
                 let infoNom = [];
                 let infoLevel = [];
                 let infoPts = [];
 
+                //je met dans les listes les infos qui viennent de l'API
                 for(index = 0; index < 5; index++){
                     infoNom.push(summonerMastery[index].championId);
                     infoLevel.push(summonerMastery[index].championLevel);
                     infoPts.push(summonerMastery[index].championPoints);
                 }
 
+                //fetch de la liste des champions pour faire la correspondance entre l'id et le nom d'un champion
                 champions = fetch('/src/json/champion.json').then((httpResponseChampion) => {
                     return httpResponseChampion.json();
                 }).then((championList) => {
                     championData = championList.data;
-                    championList = Object.values(championData);
+                    championList = Object.values(championData);//je stock le résultat (des objets) dans une liste
 
+                    //fonction qui trouve le nom d'un champion en fonction de son id
                     function findChampionName(liste, numLigne) {
                         for(index = 0; index < championList.length; index++){                            
                             if(liste[index]['key'] == infoNom[numLigne - 1]){
@@ -101,7 +104,7 @@ function getValue() {
                         return infoNom[numLigne - 1];
                     }
 
-
+                    //je récupère l'url des images de profil des champions
                     nomChampion1.textContent = findChampionName(championList, 1);
                     infoImg.push(`https://ddragon.leagueoflegends.com/cdn/13.5.1/img/champion/${nomChampion1.textContent}.png`)
 
@@ -117,6 +120,7 @@ function getValue() {
                     nomChampion5.textContent = findChampionName(championList, 5);
                     infoImg.push(`https://ddragon.leagueoflegends.com/cdn/13.5.1/img/champion/${nomChampion5.textContent}.png`)
                     
+                    //ajout des images dans le tableau
                     let img1 = document.createElement("img");
                     img1.src = infoImg[0];
                     img1.height = 50;
@@ -149,6 +153,7 @@ function getValue() {
 
                 })
 
+                //ajout des infos dans le tableau
                 masteryChampion1.textContent = infoLevel[0];
                 ptsChampion1.textContent = infoPts[0];
 
