@@ -2,7 +2,7 @@
 
 **Note**
 
-Ce site est une version démo qui ne fait pas de fetch direct sur les APIs mais qui fetch des json que j'ai rempli au préalable avec les APIs de Riot Games
+Ce site est une version démo qui ne fait pas de fetch direct sur les APIs mais qui fetch des json que j'ai rempli au préalable avec les APIs de Riot Games.
 </br>
 </br>
 
@@ -84,3 +84,10 @@ Voici le résultat si je veux afficher Ashe :
 
 ![ashe.png](https://ddragon.leagueoflegends.com/cdn/13.5.1/img/champion/Ashe.png)
 
+</br>
+
+# Sources
+- <a href="https://developer.riotgames.com/">Riot Developper Portal</a> pour obtenir une clé api et récupérer les requêtes à fetch.
+- <a href="https://developer.riotgames.com/docs/lol">Riot Data Dragon</a> pour la documentation sur les APIs et certaines ressources comme la liste de champion.
+- <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">JavaScript | MDN</a> pour la documentation javascript.
+- <a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/">Bootstrap</a> pour la documentation sur les classes Bootstrap.
