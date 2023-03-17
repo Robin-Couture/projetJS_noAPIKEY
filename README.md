@@ -1,4 +1,4 @@
-# League Pofil ++ (démo sans API)
+# League Profile ++ (démo sans API)
 
 **Note**
 
