@@ -41,7 +41,7 @@ function getValue() {
 
     //Fonction pour obtenir le summoner ID à partir du nom d'invocateur.
     function fetchSummonerID() {
-        return fetch('/src/json/summonerInfo.json')
+        return fetch('./src/json/summonerInfo.json')
     }    
     
     //Vérifie que j'ai bien un pseudo mis dans ma barre de recherche.
@@ -65,7 +65,7 @@ function getValue() {
             //fonction qui permet de récupéré les infos concernant les mastery depuis l'encrypted summoner id
             function fetchSummonerMastery(EncryptedSummonerID) {
                 summonerEncryptedID = EncryptedSummonerID;
-                return fetch('/src/json/summonerMastery.json');
+                return fetch('./src/json/summonerMastery.json');
             }
     
             masteryInfo = fetchSummonerMastery(summonerEncryptedID).then((httpResponseMastery) => {
@@ -86,7 +86,7 @@ function getValue() {
                 }
 
                 //fetch de la liste des champions pour faire la correspondance entre l'id et le nom d'un champion
-                champions = fetch('/src/json/champion.json').then((httpResponseChampion) => {
+                champions = fetch('./src/json/champion.json').then((httpResponseChampion) => {
                     return httpResponseChampion.json();
                 }).then((championList) => {
                     championData = championList.data;
